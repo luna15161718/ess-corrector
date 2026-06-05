@@ -3,10 +3,11 @@ import asyncio
 
 def get_controllers():
     devices = [evdev.InputDevice(path) for path in evdev.list_devices()]
+    global gcontroller
     for device in devices:
         print(device.path, device.name, device.phys)
-    global gcontroller
-    gcontroller = evdev.InputDevice("/dev/input/event262")
+        if device.phys == "usb-0000:13:00.4-2/input0":
+            gcontroller = device
     print(device)
     create_controller()
 
