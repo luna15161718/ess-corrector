@@ -1,8 +1,9 @@
-import evdev
+from evdev import InputDevice, list_devices, UInput
+from ess_inversion import gc_to_n64
 import asyncio
 
 def get_controllers():
-    devices = [evdev.InputDevice(path) for path in evdev.list_devices()]
+    devices = [InputDevice(path) for path in list_devices()]
     global gcontroller
     for device in devices:
         print(device.path, device.name, device.phys)
@@ -15,12 +16,13 @@ def get_controllers():
 async def read_input():
     async for ev in gcontroller.async_read_loop():
         vcontroller.write_event(ev)
-        print(repr(ev))
+        print("X - " + str(gcontroller.absinfo(0).value))
+        print("Y - " + str(gcontroller.absinfo(1).value))
 
 
 def create_controller():
     global vcontroller
-    vcontroller = evdev.UInput.from_device(gcontroller, name="virtual-controller")
+    vcontroller = UInput.from_device(gcontroller, name="virtual-controller")
     print(gcontroller)
     print(vcontroller)
     
