@@ -12,6 +12,18 @@ def get_quadrant(x, y):
         else:
             return 3
 
+def normalise(x, y):
+    quadrant = get_quadrant(x, y)
+    if quadrant == 1 or quadrant == 4:
+        x = x - 128
+    else:
+        x = min(128 - x, 127)
+    if quadrant == 1 or quadrant == 2:
+        y = y - 128
+    else:
+        y = min(128 - y, 127)
+    return (quadrant, x, y)
+
 
 def gc_to_n64(x, y):
     scale = math.fma((pow((math.fma(5, x, 2 * y)) / 525, 2) * (7 * y / 525)), 70 / 75 - 80 / 105, 80 / 105)
