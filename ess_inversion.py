@@ -1,8 +1,6 @@
 import math
 
-def map(x, y):
-    with open("oot-vc.bin", "rb") as file:
-        table = file.read()
+def ess_map(table, x, y):
     index = 2 * (y * 128 + x)
     return(table[index], table[index + 1])
 
