@@ -16,8 +16,10 @@ def get_controllers():
 async def read_input():
     async for ev in gcontroller.async_read_loop():
         vcontroller.write_event(ev)
-        print("X - " + str(gcontroller.absinfo(0).value))
-        print("Y - " + str(gcontroller.absinfo(1).value))
+        x = gcontroller.absinfo(0).value
+        y = gcontroller.absinfo(1).value
+        print("X - " + x)
+        print("Y - " + y)
 
 
 def create_controller():
