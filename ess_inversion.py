@@ -25,6 +25,18 @@ def normalise(x, y):
     return (quadrant, x, y)
 
 
+def denormalise(quadrant, x, y):
+    if quadrant == 1 or quadrant == 4:
+        x = x + 128
+    else:
+        x = 128 - x
+    if quadrant == 1 or quadrant == 2:
+        y = y + 128
+    else:
+        y = 128 - y
+    return (x, y)
+
+
 def gc_to_n64(x, y):
     scale = math.fma((pow((math.fma(5, x, 2 * y)) / 525, 2) * (7 * y / 525)), 70 / 75 - 80 / 105, 80 / 105)
     return (min(math.ceil(x * scale), 127), min(math.ceil(y * scale), 127))
