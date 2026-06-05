@@ -1,8 +1,10 @@
-from controller import read_input
+from controller import get_controllers, read_input
+import asyncio
 
 def main():
     print("Hello from ess-corrector!")
-    read_input()
+    get_controllers()
+    asyncio.run(read_input())
 
 
 if __name__ == "__main__":
