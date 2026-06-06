@@ -4,6 +4,7 @@ def ess_map(table, x, y):
     index = 2 * (y * 128 + x)
     return(table[index], table[index + 1])
 
+
 def get_quadrant(x, y):
     if x >= 128:
         if y >= 128:
@@ -15,6 +16,7 @@ def get_quadrant(x, y):
             return 2
         else:
             return 3
+
 
 def normalise(x, y):
     quadrant = get_quadrant(x, y)
@@ -39,6 +41,7 @@ def denormalise(quadrant, x, y):
     else:
         y = 128 - y
     return (x, y)
+
 
 def gc_to_n64(x, y):
     scale = math.fma((pow((math.fma(5, x, 2 * y)) / 525, 2) * (7 * y / 525)), 70 / 75 - 80 / 105, 80 / 105)

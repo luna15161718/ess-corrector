@@ -26,24 +26,31 @@ async def read_input():
         vcontroller.write_event(new_x)
         vcontroller.write_event(new_y)
         vcontroller.syn()
-        print("X - " + str(x))
-        print("Y - " + str(y))
+        print("5 - " + str(x))
+        print("5 - " + str(y))
 
 
 def process_input(x, y):
+    print(1)
+    print(x, y)
     should_swap = y > x
-    print(should_swap)
     quadrant, x, y = normalise(x, y)
+    print(2)
+    print(x, y)
     if should_swap:
         temp = x
         x = y
         y = temp
     x, y = gc_to_n64(x, y)
+    print(3)
+    print(x, y)
     if should_swap:
         temp = x
         x = y
         y = temp
     x, y = ess_map(table, x, y)
+    print(4)
+    print(x, y)
     x, y = denormalise(quadrant, x, y)
     return(x, y)
 
